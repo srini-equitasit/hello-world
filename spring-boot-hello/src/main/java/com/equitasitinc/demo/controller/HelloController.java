@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hello")
+@RequestMapping("user")
 public class HelloController {
 
-	@GetMapping("say")
+	@GetMapping("hello")
 	public String hello(@RequestParam("name") String fullName) {
 		return "hello " + fullName;
 	}
