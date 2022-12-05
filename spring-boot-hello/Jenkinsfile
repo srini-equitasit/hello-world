@@ -12,14 +12,14 @@ pipeline {
                 ''' 
             }
         }
-        stage ('change directory') {
-           CD('spring-boot-hello')
-        }
+        
 
         stage ('Build') {
+            dir('spring-boot-hello'){
             steps {
                 sh 'mvn clean package'
             }
+          }
         }
     }
 }
