@@ -24,5 +24,15 @@ pipeline {
             }
           }
         }
+
+        stage ('publish the war file to S3') {
+            steps {
+                dir(project_folder){            
+
+                s3Upload(bucket:"equitasit-jenkins-build", path:"target", includePathPattern:'**/*.war', workingDir:'target')
+
+            }
+          }
+        }
     }
 }
