@@ -30,7 +30,7 @@ pipeline {
                 dir(project_folder){            
 
                 s3Upload(
-                    profileName:'default',
+                    profileName:'Default',
                 // profileName: 'build',
                     dontWaitForConcurrentBuildCompletion: true,
                     dontSetBuildResultOnFailure: false,
