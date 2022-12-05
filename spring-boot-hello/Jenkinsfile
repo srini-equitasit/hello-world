@@ -12,6 +12,13 @@ pipeline {
                 ''' 
             }
         }
+        stage ('change directory') {
+            steps {
+                sh '''
+                    cd spring-boot-hello                    
+                ''' 
+            }
+        }
 
         stage ('Build') {
             steps {
