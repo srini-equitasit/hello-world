@@ -13,7 +13,7 @@ pipeline {
             }
         }
         stage ('change directory') {
-           cd('spring-boot-hello')
+           CD('spring-boot-hello')
         }
 
         stage ('Build') {
