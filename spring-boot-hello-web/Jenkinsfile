@@ -1,0 +1,28 @@
+def project_folder='spring-boot-hello-web'
+pipeline {
+    agent any
+    tools { 
+      maven 'Maven 3.3.9'
+    }
+    
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"                   
+                ''' 
+                println "project_folder =  ${project_folder} "
+            }             
+        }
+        
+
+        stage ('Build') {
+            steps {
+                dir(project_folder){            
+                sh 'mvn clean package'
+            }
+          }
+        }
+    }
+}
