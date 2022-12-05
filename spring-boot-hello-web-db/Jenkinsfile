@@ -29,7 +29,7 @@ pipeline {
             steps {
                 dir(project_folder){            
 
-                s3Upload(entries:{bucket:"equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}", sourceFile :'target/*.war'})
+                s3Upload(entries:[[bucket:"equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}", sourceFile :'target/*.war']])
 
             }
           }
