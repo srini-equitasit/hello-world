@@ -14,15 +14,17 @@ pipeline {
         }
         stage ('change directory') {
             steps {
-                sh '''
-                    cd spring-boot-hello                    
-                ''' 
-            }
+                sh "pwd"
+                dir('spring-boot-hello') {
+                  sh "pwd"
+                }
+                sh "pwd"
+            } 
         }
 
         stage ('Build') {
             steps {
-                sh ' cd spring-boot-hello  && mvn clean package'
+                sh 'mvn clean package'
             }
         }
     }
