@@ -1,15 +1,18 @@
-def project_folder='spring-boot-hello'
 pipeline {
     agent any
     tools { 
       maven 'Maven 3.3.9'
+    }
+    environment {
+      project_folder='spring-boot-hello'
     }
     stages {
         stage ('Initialize') {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"                  
+                    echo "M2_HOME = ${M2_HOME}"
+                    echo "project_folder = ${project_folder}"
                 ''' 
             }
               echo project_folder
@@ -18,7 +21,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-             dir(project_folder){            
+                dir(${project_folder}){            
                 sh 'mvn clean package'
             }
           }
