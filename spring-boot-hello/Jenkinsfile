@@ -13,13 +13,7 @@ pipeline {
             }
         }
         stage ('change directory') {
-            steps {
-                sh "pwd"
-                dir('spring-boot-hello') {
-                  sh "pwd"
-                }
-                sh "pwd"
-            } 
+           cd('spring-boot-hello')
         }
 
         stage ('Build') {
