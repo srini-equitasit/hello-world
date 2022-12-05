@@ -15,8 +15,8 @@ pipeline {
         
 
         stage ('Build') {
-            dir('spring-boot-hello'){
             steps {
+             dir('spring-boot-hello'){            
                 sh 'mvn clean package'
             }
           }
