@@ -49,10 +49,9 @@
 
 <body>
 	<div>
-		<form action="#" th:action="@{/emp/save}" th:object="${emp}" method="post">
-			<p> <input type="hidden" th:field="*{id}" /></p>
+		<form action="#" th:action="@{/emp_details}" th:object="${emp}" method="post">
 			<p>Name: <input type="text" th:field="*{name}" /></p>
-			<p>Department: <input type="text" th:field="*{deptNo}" /></p>
+			<p>Department: <input type="text" th:field="*{dept}" /></p>
 			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 		</form>
 	</div>

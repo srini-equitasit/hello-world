@@ -1,4 +1,4 @@
-package com.equitasit.hello.web_db.controller;
+package com.equitasit.three_tier_web.controller;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.equitasit.hello.web_db.model.EmpDto;
-import com.equitasit.hello.web_db.service.EmpService;
+import com.equitasit.three_tier_web.model.EmpDto;
+import com.equitasit.three_tier_web.service.EmpService;
 
 @Controller
-public class HelloWebController {
+public class ThreeTierWebController {
 
 	@Autowired
 	private EmpService empService;

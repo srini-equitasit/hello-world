@@ -1,4 +1,4 @@
-def project_folder='spring-boot-hello-web-db'
+def project_folder='one-tier'
 pipeline {
     agent any
     tools { 

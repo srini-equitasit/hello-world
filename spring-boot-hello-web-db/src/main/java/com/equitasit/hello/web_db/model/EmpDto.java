@@ -4,8 +4,8 @@ public class EmpDto {
 
 	private String name;
 
-	private String dept;
-	
+	private Integer deptNo;
+
 	private Integer id;
 
 	public String getName() {
@@ -16,20 +16,20 @@ public class EmpDto {
 		this.name = name;
 	}
 
-	public String getDept() {
-		return dept;
-	}
-
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
-
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getDeptNo() {
+		return deptNo;
+	}
+
+	public void setDeptNo(Integer deptNo) {
+		this.deptNo = deptNo;
 	}
 
 }

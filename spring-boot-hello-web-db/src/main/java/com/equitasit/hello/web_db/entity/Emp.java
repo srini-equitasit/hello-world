@@ -15,8 +15,8 @@ public class Emp {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "dept")
-	private String dept;
+	@Column(name = "dept_no")
+	private Integer deptNo;
 
 	public Integer getId() {
 		return id;
@@ -34,12 +34,12 @@ public class Emp {
 		this.name = name;
 	}
 
-	public String getDept() {
-		return dept;
+	public Integer getDeptNo() {
+		return deptNo;
 	}
 
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setDeptNo(Integer deptNo) {
+		this.deptNo = deptNo;
 	}
 
 }
