@@ -5,20 +5,21 @@
 	<title>Employee Registeration Form</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link th:href="@{/styles/app.css}" rel="stylesheet" />
 
+
+	<link th:href="@{/styles/app.css}" rel="stylesheet" />
 </head>
 
 <body>
 	<header th:insert="header.html "> </header>
-	<div  class="new">
+	<div class="new">
 
 		<fieldset>
-			<legend>Employee Details</legend>
-			<form action="#" th:action="@{/emp/save}" th:object="${emp}" method="post">
-				<p> <input type="hidden" th:field="*{id}" /></p>
+			<legend>Department Details</legend>
+			<form action="#" th:action="@{/dept/save}" th:object="${dept}" method="post">
+				<p> <input type="hidden" th:field="*{deptno}" /></p>
 				<p>Name: <input type="text" th:field="*{name}" /></p>
-				<p>Department: <input type="text" th:field="*{deptNo}" /></p>
+				<p>Location: <input type="text" th:field="*{loc}" /></p>
 				<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 			</form>
 		</fieldset>

@@ -1,4 +1,4 @@
-package com.equitasit.hello.web_db.service;
+package com.equitasit.one_tier.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,9 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.equitasit.hello.web_db.entity.Emp;
-import com.equitasit.hello.web_db.model.EmpDto;
-import com.equitasit.hello.web_db.repository.EmpRepository;
+import com.equitasit.one_tier.dto.EmpDto;
+import com.equitasit.one_tier.entity.Emp;
+import com.equitasit.one_tier.repository.EmpRepository;
 
 @Service
 public class EmpService {

@@ -1,6 +1,7 @@
-package com.equitasit.hello.web_db.entity;
+package com.equitasit.one_tier.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,9 +10,10 @@ import javax.persistence.Table;
 public class Department {
 
 	@Id
+	@GeneratedValue
 	private Integer deptno;
 
-	private String dname;
+	private String name;
 
 	private String loc;
 
@@ -23,20 +25,20 @@ public class Department {
 		this.deptno = deptno;
 	}
 
-	public String getDname() {
-		return dname;
-	}
-
-	public void setDname(String dname) {
-		this.dname = dname;
-	}
-
 	public String getLoc() {
 		return loc;
 	}
 
 	public void setLoc(String loc) {
 		this.loc = loc;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

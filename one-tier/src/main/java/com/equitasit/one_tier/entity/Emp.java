@@ -1,4 +1,4 @@
-package com.equitasit.hello.web_db.entity;
+package com.equitasit.one_tier.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

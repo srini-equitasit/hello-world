@@ -1,4 +1,4 @@
-package com.equitasit.hello.web_db.model;
+package com.equitasit.one_tier.dto;
 
 public class EmpDto {
 

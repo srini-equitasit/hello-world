@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Employee List</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	
+	
+	 <link th:href="@{/styles/app.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<header th:insert="header.html "> </header>
+
+	<h3>
+		<span>List of Departments</span>
+	</h3>
+
+	<div th:if="${ not#lists.isEmpty(deptList)}">
+		<table id="depts">
+			<tr>
+				<th>Dept No</th>
+				<th>Name</th>
+				<th>Location</th>
+				<th>Actions</th>
+
+			</tr>
+			<tr th:each="dept : ${deptList}">
+				<td th:text="${dept.deptno}"></td>
+				<td th:text="${dept.name}"></td>
+				<td th:text="${dept.loc}"></td>
+				<td>
+
+					<!-- edit -->
+					<a th:href="@{/dept/edit(deptId=${dept.deptno})}">&#9998;</a>
+
+					<!-- remove -->
+					<a th:href="@{/dept/remove(deptId=${dept.deptno})}">&#128465;</a>
+
+				</td>
+
+			</tr>
+			<table>
+	</div>
+
+
+
+	<a th:href="@{/dept/new}">New</a>
+</body>
+
+</html>

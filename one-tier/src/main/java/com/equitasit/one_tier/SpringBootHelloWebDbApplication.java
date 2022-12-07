@@ -1,4 +1,4 @@
-package com.equitasit.hello.web_db;
+package com.equitasit.one_tier;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
