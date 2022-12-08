@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
 	@GetMapping("hello")
-	public String hello(@RequestParam("name") String fullName) {
+	public String hello(@RequestParam(name = "name", required = false) String fullName) {
 		return "hello " + fullName;
 	}
 }
