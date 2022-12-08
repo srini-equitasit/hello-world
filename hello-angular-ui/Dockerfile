@@ -28,4 +28,4 @@ EXPOSE 80
 #EXPOSE 4200
 #CMD npm start
 
-#docker run -it 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-ui-app sh
+#docker run -p4200:80 -e helloApiUrl=http://ec2-34-205-2-147.compute-1.amazonaws.com:8081/hello 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:hello-angular-ui
