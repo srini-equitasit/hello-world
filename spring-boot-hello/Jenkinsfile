@@ -30,7 +30,7 @@ pipeline {
                 dir(project_folder){            
                     sh 'mvn clean package'
                 }
-          }l̥
+          }
         }
 
         stage('Docker Build') {
