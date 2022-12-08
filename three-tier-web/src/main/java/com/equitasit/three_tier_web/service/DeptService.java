@@ -13,37 +13,36 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.equitasit.three_tier_web.dto.EmpDto;
+import com.equitasit.three_tier_web.dto.DeptDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class EmpService {
+public class DeptService {
 
-	@Value("${emp.url}")
-	private String empUrl;
+	@Value("${dept.url}")
+	private String deptUrl;
 
 	private RestTemplate restTemplate = new RestTemplate();
 
 	private ObjectMapper mapper = new ObjectMapper();
 
-	public EmpDto save(EmpDto empDto) throws Exception {
+	public DeptDTO save(DeptDTO deptDTO) throws Exception {
 
 		HttpHeaders headers = new HttpHeaders();
-
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		String jsonBody = mapper.writeValueAsString(empDto);
+		String jsonBody = mapper.writeValueAsString(deptDTO);
 
 		HttpEntity<String> request = new HttpEntity<String>(jsonBody, headers);
 
-		ResponseEntity<EmpDto> responseEntity = restTemplate.postForEntity(empUrl + "/save", request, EmpDto.class);
+		ResponseEntity<DeptDTO> responseEntity = restTemplate.postForEntity(deptUrl + "/save", request, DeptDTO.class);
 
 		return responseEntity.getBody();
 	}
 
-	public void remove(Integer empId) {
+	public void remove(Integer deptNo) {
 
-		String finalUrl = UriComponentsBuilder.fromHttpUrl(empUrl + "/remove").queryParam("empId", empId).encode()
+		String finalUrl = UriComponentsBuilder.fromHttpUrl(deptUrl + "/remove").queryParam("deptId", deptNo).encode()
 				.toUriString();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -53,20 +52,19 @@ public class EmpService {
 
 	}
 
-	public EmpDto getEmp(Integer empId) {
-		String finalUrl = UriComponentsBuilder.fromHttpUrl(empUrl + "/get").queryParam("empId", empId).encode()
+	public DeptDTO get(Integer deptno) {
+		String finalUrl = UriComponentsBuilder.fromHttpUrl(deptUrl + "/get").queryParam("deptId", deptno).encode()
 				.toUriString();
-		ResponseEntity<EmpDto> responseEntity = restTemplate.getForEntity(finalUrl, EmpDto.class);
+		ResponseEntity<DeptDTO> responseEntity = restTemplate.getForEntity(finalUrl, DeptDTO.class);
 		return responseEntity.getBody();
 	}
 
-	public List<EmpDto> getAll() {
-
-		ResponseEntity<List<EmpDto>> responseEntity = restTemplate.exchange(empUrl + "/list", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<EmpDto>>() {
+	public List<DeptDTO> getAll() {
+		
+		ResponseEntity<List<DeptDTO>> responseEntity = restTemplate.exchange(deptUrl + "/list", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<DeptDTO>>() {
 				});
-
+		
 		return responseEntity.getBody();
 	}
-
 }

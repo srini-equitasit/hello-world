@@ -1,0 +1,53 @@
+def project_folder='three-tier-web'
+pipeline {
+    agent any
+    tools { 
+      maven 'Maven 3.3.9'
+    }
+    
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"                   
+                ''' 
+                println "project_folder =  ${project_folder} "
+            }             
+        }
+        
+
+        stage ('Build') {
+            steps {
+                dir(project_folder){            
+                sh 'mvn clean package'
+            }
+          }
+        }
+
+        stage ('publish the war file to S3') {
+            steps {
+                dir(project_folder){            
+
+                s3Upload(
+                    // profileName:'Default',
+                    profileName: 'build',
+                    dontWaitForConcurrentBuildCompletion: true,
+                    dontSetBuildResultOnFailure: false,
+                    consoleLogLevel: 'INFO',
+                    pluginFailureResultConstraint: 'FAILURE',
+                    entries:[[
+                        bucket:"equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}", 
+                        sourceFile :'target/*.war',
+                        selectedRegion : 'us-east-1',
+                        noUploadOnFailure: true
+                    ]],
+                    userMetadata: []
+                
+                )
+
+            }
+          }
+        }
+    }
+}
