@@ -1,0 +1,27 @@
+#hello {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#hello td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#hello tr:nth-child(even){background-color: #f2f2f2;}
+
+#hello tr:hover {background-color: #ddd;}
+
+#hello th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+fieldset{
+  margin-top: 20px;
+  width: 500px;
+}

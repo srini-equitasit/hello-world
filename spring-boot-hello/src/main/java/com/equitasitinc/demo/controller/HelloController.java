@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class HelloController {
 	private ServerProperties serverProperties;
 
 	@GetMapping("hello")
+	@CrossOrigin(value = "*")
 	public Map<String, Object> hello(@RequestParam(name = "name", required = false, defaultValue = "") String name,
 			HttpServletRequest request) throws Exception {
 

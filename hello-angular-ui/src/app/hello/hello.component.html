@@ -1,0 +1,43 @@
+<div>
+  <input [(ngModel)]="name">
+  <button type="button" (click)="submitReq()">Submit</button>
+</div>
+
+<div>
+
+  <fieldset >
+    <legend>Response</legend>
+    <table id="hello">
+      <tr>
+        <td>Message : </td>
+        <td>{{resp.msg}}</td>
+      </tr>
+
+      <tr>
+        <td>Date : </td>
+        <td>{{resp.date}}</td>
+      </tr>
+
+      <tr>
+        <td>Server IP : </td>
+        <td>{{resp?.server?.ip}}</td>
+      </tr>
+
+      <tr>
+        <td>Server Port : </td>
+        <td>{{resp?.server?.port}}</td>
+      </tr>
+
+      <tr>
+        <td>Browser IP : </td>
+        <td>{{resp?.remote?.ip}}</td>
+      </tr>
+
+      <tr>
+        <td>Browser Port : </td>
+        <td>{{resp?.remote?.port}}</td>
+      </tr>
+
+    </table>
+  </fieldset>
+</div>
