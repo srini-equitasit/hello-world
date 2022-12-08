@@ -38,7 +38,7 @@ pipeline {
                     pluginFailureResultConstraint: 'FAILURE',
                     entries:[[
                         bucket:"equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}", 
-                        sourceFile :'target/*.war',
+                        sourceFile :'target/*.jar',
                         selectedRegion : 'us-east-1',
                         noUploadOnFailure: true
                     ]],
