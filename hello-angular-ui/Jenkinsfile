@@ -1,3 +1,4 @@
+def project_folder='hello-angular-ui'
 pipeline {
   agent any
   environment {
@@ -19,6 +20,7 @@ pipeline {
                 echo "sonar_srvr_url = ${sonar_srvr_url}"
                 echo "sonar_token = ${sonar_token}"
             '''
+            println "project_folder =  ${project_folder} "
         }
     }
 
@@ -26,9 +28,11 @@ pipeline {
 
    stage('Docker Build') {
       steps {
+        dir(project_folder){
       	script{
       	  sh "docker build -t ${REPOSITORY_URI}:$IMAGE_TAG ."
       	}
+        }
       }
     }
 
