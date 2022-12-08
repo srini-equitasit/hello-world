@@ -9,7 +9,7 @@ server {
     index index.html index.htm;
   }
 
-  location /hello/ {
+  location /hello {
     proxy_pass ${helloApiUrl};
   }
 
