@@ -7,6 +7,7 @@ pipeline {
     stage('Initialize') {
       steps {
         sh '''
+          export PATH=/home/ec2-user/.nvm/versions/node/v16.13.2/bin:$PATH
           echo "PATH = ${PATH}"
           echo "M2_HOME = ${M2_HOME}"                   
           '''
