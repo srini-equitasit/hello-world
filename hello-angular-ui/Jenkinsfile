@@ -1,58 +1,67 @@
-def project_folder='hello-angular-ui'
+def project_folder = 'hello-angular-ui'
 pipeline {
   agent any
-  environment {
-      AWS_ACCOUNT_ID="337901474843"
-      AWS_DEFAULT_REGION="us-east-1"
-      IMAGE_REPO_NAME="equitas-it"
-      IMAGE_TAG="hello-angular-ui"
-      // IMAGE_TAG="emp-ui-app_${env.BUILD_ID}"
-      REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-  }
-
 
   stages {
 
-   stage ('Initialize') {
-        steps {
-            sh '''
-                echo "PATH = ${PATH}"
-                echo "sonar_srvr_url = ${sonar_srvr_url}"
-                echo "sonar_token = ${sonar_token}"
-            '''
-            println "project_folder =  ${project_folder} "
-        }
+    stage('Initialize') {
+      steps {
+        sh ''
+        '
+        echo "PATH = ${PATH}"
+        echo "sonar_srvr_url = ${sonar_srvr_url}"
+        echo "sonar_token = ${sonar_token}"
+        ''
+        '
+        println "project_folder =  ${project_folder} "
+      }
     }
 
-
-
-   stage('Docker Build') {
+    stage('install dependencies') {
       steps {
-        dir(project_folder){
-      	script{
-      	  sh "docker build -t ${REPOSITORY_URI}:$IMAGE_TAG ."
-      	}
+        dir(project_folder) {
+          script {
+            sh "npm install"
+          }
+        }
+      }
+    }
+    stage('build code') {
+      steps {
+        dir(project_folder) {
+          script {
+            sh "npm build"
+          }
         }
       }
     }
 
-   stage('Logging into AWS ECR') {
-        steps {
-            script {
-              sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-            }
-        }
-   }
+    stage('push to to S3') {
+      steps {
+        dir(project_folder) {
 
-       // Uploading Docker images into AWS ECR
-   stage('Pushing to ECR') {
-    steps{
-        script {
-               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-        }
-       }
-     }
+          s3Upload(
+            // profileName:'Default',
+            profileName: 'build',
+            dontWaitForConcurrentBuildCompletion: true,
+            dontSetBuildResultOnFailure: false,
+            consoleLogLevel: 'INFO',
+            pluginFailureResultConstraint: 'FAILURE',
+            entries: [
+              [
+                bucket: "equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}",
+                sourceFile: 'dist/*.*',
+                selectedRegion: 'us-east-1',
+                noUploadOnFailure: true
+              ]
+            ],
+            userMetadata: []
 
+          )
+
+        }
+      }
+    }
 
   }
 }
