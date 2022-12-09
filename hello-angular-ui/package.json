@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build ; zip -r dist/hello-angular-ui.zip dist/;",
+    "build1": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
