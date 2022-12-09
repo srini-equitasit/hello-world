@@ -53,7 +53,7 @@ pipeline {
             entries: [
               [
                 bucket: "equitasit-jenkins-build/${JOB_NAME}-${BUILD_NUMBER}",
-                sourceFile: 'dist/*.*',
+                sourceFile: 'dist',
                 selectedRegion: 'us-east-1',
                 noUploadOnFailure: true
               ]
