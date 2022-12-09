@@ -6,13 +6,7 @@ pipeline {
 
     stage('Initialize') {
       steps {
-        sh ''
-        '
-        echo "PATH = ${PATH}"
-        echo "sonar_srvr_url = ${sonar_srvr_url}"
-        echo "sonar_token = ${sonar_token}"
-        ''
-        '
+       
         println "project_folder =  ${project_folder} "
       }
     }
