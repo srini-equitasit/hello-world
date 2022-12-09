@@ -2,6 +2,16 @@ def project_folder = 'hello-angular-ui'
 pipeline {
   agent any
 
+   tools { 
+      node16 'node16.3'
+    }
+
+    node {
+      env.NODEJS_HOME = "${tool 'node16'}"
+      // on linux / mac
+      env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+    }
+
   stages {
 
     stage('Initialize') {
