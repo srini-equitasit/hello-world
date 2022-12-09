@@ -43,6 +43,7 @@ pipeline {
       steps {
         dir(project_folder) {
           script {
+            
             sh "npm run zip-build"
           }
         }
