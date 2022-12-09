@@ -2,19 +2,19 @@ def project_folder = 'hello-angular-ui'
 pipeline {
   agent any
 
-   tools { 
+   tools {
       nodejs 'node16'
     }
 
-   
+
 
   stages {
 
     stage('Initialize') {
       steps {
-        sh '''          
+        sh '''
           echo "PATH = ${PATH}"
-          echo "M2_HOME = ${M2_HOME}"                   
+          echo "M2_HOME = ${M2_HOME}"
           '''
         println "project_folder =  ${project_folder} "
       }
@@ -34,6 +34,16 @@ pipeline {
         dir(project_folder) {
           script {
             sh "npm run build"
+          }
+        }
+      }
+    }
+
+    stage('zip dist folder') {
+      steps {
+        dir(project_folder) {
+          script {
+            sh "npm run zip-build"
           }
         }
       }
