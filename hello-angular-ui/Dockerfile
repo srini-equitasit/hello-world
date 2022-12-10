@@ -22,4 +22,4 @@ COPY default.conf.template /etc/nginx/templates/default.conf.template
 
 EXPOSE 80
 
-#docker run -p4200:80 -e helloApiUrl=http://ec2-34-205-2-147.compute-1.amazonaws.com:8081/hello 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:hello-angular-ui
+#docker run -p4200:80 -e helloApiUrl=http://ec2-100-26-3-123.compute-1.amazonaws.com:9083/hello 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:hello-angular-ui
