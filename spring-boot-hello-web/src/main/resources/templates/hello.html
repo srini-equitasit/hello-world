@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Hello Form</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<style>
+		#hello {
+			font-family: Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		#hello td,
+		#customers th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+
+		#hello tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+
+		#hello tr:hover {
+			background-color: #ddd;
+		}
+
+		#hello th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #04AA6D;
+			color: white;
+		}
+
+		fieldset {
+			margin-top: 20px;
+			width: 500px;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div>
+		<form action="#" th:action="@{/hello}" th:object="${respData}" method="post">
+			<div>
+				<input th:name="name">
+				<button type="submit">Submit</button>
+			</div>
+
+			<div>
+
+				<fieldset>
+					<legend>Response</legend>
+					<table id="hello">
+						<tr>
+							<td>Message : </td>
+							<td><span th:text="${respData?.msg}"> </span></td>
+						</tr>
+
+						<tr>
+							<td>Date : </td>
+							<td> <span th:text="${respData?.date}"> </span></td>
+						</tr>
+
+						<tr>
+							<td>Server IP : </td>
+							<td> <span th:text="${respData?.server?.ip}"> </span></td>
+						</tr>
+
+						<tr>
+							<td>Server Port : </td>
+							<td> <span th:text="${respData?.server?.port}"> </span></td>
+						</tr>
+
+						<tr>
+							<td>Browser IP : </td>
+							<td> <span th:text="${respData?.remote?.ip}"> </span></td>
+						</tr>
+
+						<tr>
+							<td>Browser Port : </td>
+							<td><span th:text="${respData?.remote?.port}"> </span></td>
+						</tr>
+
+					</table>
+				</fieldset>
+			</div>
+
+		</form>
+	</div>
+</body>
+
+</html>
