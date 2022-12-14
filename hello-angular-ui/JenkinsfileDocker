@@ -6,6 +6,8 @@ pipeline {
       AWS_DEFAULT_REGION="us-east-1"
       IMAGE_REPO_NAME="equitas-it"
       IMAGE_TAG="hello-angular-ui"
+      IMAGE_TAG_LATEST="hello-angular-ui-latest"
+      IMAGE_TAG_VERSION="hello-angular-ui-${env.BUILD_ID}"
       // IMAGE_TAG="emp-ui-app_${env.BUILD_ID}"
       REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
   }
@@ -30,7 +32,7 @@ pipeline {
       steps {
         dir(project_folder){
       	script{
-      	  sh "docker build -t ${REPOSITORY_URI}:$IMAGE_TAG ."
+      	  sh "docker build -t ${REPOSITORY_URI}:${IMAGE_TAG_VERSION} ."
       	}
         }
       }
@@ -48,7 +50,11 @@ pipeline {
    stage('Pushing to ECR') {
     steps{
         script {
-               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+               sh "docker tag ${REPOSITORY_URI}:${IMAGE_TAG_VERSION} ${REPOSITORY_URI}:$IMAGE_TAG_LATEST"
+
+               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG_VERSION}"
+
+               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG_LATEST}"
         }
        }
      }
