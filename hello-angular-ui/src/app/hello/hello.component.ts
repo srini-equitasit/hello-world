@@ -10,6 +10,7 @@ export class HelloComponent implements OnInit {
 
   name: string = '';
   resp: any;
+  showError = false;
 
   constructor(private helloService: HelloService) {
   }
@@ -24,9 +25,16 @@ export class HelloComponent implements OnInit {
 
     obs.subscribe(data => {
       this.resp = data;
+    }, error => {
+      this.showError = true;
+      console.log(error);
     });
 
 
+  }
+
+  closeAlert() {
+    this.showError = false;
   }
 
 }

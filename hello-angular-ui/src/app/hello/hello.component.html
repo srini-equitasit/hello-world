@@ -3,38 +3,43 @@
   <button type="button" (click)="submitReq()">Submit</button>
 </div>
 
+<div class="alert" *ngIf="showError">
+  <span class="closebtn" (click)="closeAlert()">&times;</span>
+  <strong>Error!</strong> While getting the Data , Please check logs.
+</div>
+
 <div>
 
-  <fieldset >
+  <fieldset>
     <legend>Response</legend>
     <table id="hello">
       <tr>
-        <td>Message : </td>
+        <td>Message :</td>
         <td>{{resp.msg}}</td>
       </tr>
 
       <tr>
-        <td>Date : </td>
+        <td>Date :</td>
         <td>{{resp.date}}</td>
       </tr>
 
       <tr>
-        <td>Server IP : </td>
+        <td>Server IP :</td>
         <td>{{resp?.server?.IP}}</td>
       </tr>
 
       <tr>
-        <td>Server Port : </td>
+        <td>Server Port :</td>
         <td>{{resp?.server?.port}}</td>
       </tr>
 
       <tr>
-        <td>Browser IP : </td>
+        <td>Browser IP :</td>
         <td>{{resp?.remote?.IP}}</td>
       </tr>
 
       <tr>
-        <td>Browser Port : </td>
+        <td>Browser Port :</td>
         <td>{{resp?.remote?.port}}</td>
       </tr>
 
